@@ -120,7 +120,7 @@ func checkBIRDReady(ipv string, thresholdTime time.Duration) error {
 		if len(s) > 0 {
 			// When we first start up, only report ready if all our peerings are established.
 			// This prevents rolling update from proceeding until BGP is back up.
-			return fmt.Errorf("BGP not established with %+v", strings.Join(s, ","))
+			return fmt.Errorf("BGP not established with %+v ", strings.Join(s, ","))
 		}
 		// Check for GR
 		gr, err := bird.GRInProgress(ipv)
@@ -134,7 +134,7 @@ func checkBIRDReady(ipv string, thresholdTime time.Duration) error {
 		// from reporting not-ready if some nodes go down.
 		log.Debugf("There exist(s) %v calico node(s) with BGP peering established.", numEstablishedPeer)
 	} else {
-		return fmt.Errorf("BGP not established with %+v", strings.Join(s, ","))
+		return fmt.Errorf("BGP not established with %+v ", strings.Join(s, ","))
 	}
 
 	return nil
